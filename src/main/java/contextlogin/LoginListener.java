@@ -3,6 +3,8 @@ package contextlogin;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class LoginListener implements ServletContextListener {
     /**
@@ -22,6 +24,17 @@ public class LoginListener implements ServletContextListener {
     }
 
     public void contextDestroyed(ServletContextEvent arg1) {
+        /**
+         * Database connection close in the centext destroy
+         */
+        Connection conn = Database.getConn();
+        if (conn != null){
+            try {
+                conn.close();
+            }catch (SQLException ex){
+                ex.printStackTrace();
+            }
+        }
 
     }
 
