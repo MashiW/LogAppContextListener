@@ -33,11 +33,11 @@ public class Login extends HttpServlet {
         try {
             Connection con = Database.getConn();
             Statement st = con.createStatement();
-            rs=st.executeQuery(sql);
+            rs = st.executeQuery(sql);
 
-            if(rs.first()){
+            if (rs.first()) {
                 response.sendRedirect("success.html");
-            }else{
+            } else {
                 response.sendRedirect("error.html");
             }
         } catch (SQLException e) {
